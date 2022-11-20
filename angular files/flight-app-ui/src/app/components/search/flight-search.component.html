@@ -1,0 +1,49 @@
+<mat-card id="search-page">
+  <div [formGroup]="radioFormGroup">
+    <mat-radio-group formControlName="option">
+      <mat-radio-button class="radio-group" *ngFor="let radio of radioConfig" value={{radio.value}}>{{radio.label}}</mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <ng-container *ngIf="radioFormGroup.controls['option'].value === 'searchByCities'">
+    <div style="display: inline;" [formGroup]="citiesFormGroup">
+      <mat-form-field>
+        <mat-label>From</mat-label>
+        <input matInput formControlName="from">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>To</mat-label>
+        <input matInput formControlName="to">
+      </mat-form-field>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="radioFormGroup.controls['option'].value === 'searchByFlightNumber'">
+    <div style="display: inline;" [formGroup]="flightNumberFormGroup">
+      <mat-form-field>
+        <mat-label>Flight Number</mat-label>
+        <input matInput formControlName="flightNumber">
+      </mat-form-field>
+    </div>
+  </ng-container>
+  <button mat-raised-button color="primary" class="search-button" [disabled]="isFormValid()"
+    (click)="searchFlight()">Search</button>
+</mat-card>
+
+<mat-card style="margin-top: 0.5rem;" *ngFor="let flight of flightList">
+  <div class="flight-detail">{{flight.airline}}</div>
+  <div class="flight-detail">{{flight.flightNumber}}</div>
+  <div class="flight-detail">
+    <span><strong>Departure - </strong></span>
+    <span>{{flight.startDateTime}}</span>
+  </div>
+  <div class="flight-detail">
+    <span><strong>Arrival - </strong></span>
+    <span>{{flight.endDateTime}}</span>
+  </div>
+  <div class="flight-detail">
+    <span><strong>Price - </strong></span>
+    <span>{{flight.ticketFare}}</span>
+  </div>
+  <div class="flight-detail">
+    <button mat-raised-button color="primary" class="search-button">Book</button>
+  </div>
+</mat-card>

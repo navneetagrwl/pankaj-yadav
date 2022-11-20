@@ -1,0 +1,17 @@
+.mat-form-field {
+    padding-right: 1rem;
+}
+
+.search-button {
+  background-color: #009DD2;
+}
+
+.flight-detail {
+  padding: 0 2rem;
+  display: inline-block;
+}
+
+.radio-group {
+  padding-right: 1rem;
+  padding-bottom: 1rem;
+}
